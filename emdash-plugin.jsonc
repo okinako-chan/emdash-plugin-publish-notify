@@ -1,0 +1,41 @@
+{
+	"$schema": "./node_modules/@emdash-cms/plugin-cli/schemas/emdash-plugin.schema.json",
+
+	"slug": "publish-notify",
+	// Atproto identity for the plugin registry; only checked when publishing there
+	"publisher": "okinako.dev",
+
+	"license": "MIT",
+	"author": { "name": "okinako", "url": "https://okinako.dev" },
+	"security": { "url": "https://github.com/okinako-chan/emdash-plugin-publish-notify/security/advisories/new" },
+	"name": "Publish Notify",
+	"description": "Posts to a Discord webhook when an entry is published, updated, or unpublished.",
+	"keywords": ["discord", "webhook", "notifications"],
+	"repo": "https://github.com/okinako-chan/emdash-plugin-publish-notify",
+
+	// content:read is what the runtime requires to register the publish hooks.
+	// Outbound requests are pinned to the Discord webhook hosts.
+	"capabilities": ["content:read", "network:request"],
+	"allowedHosts": ["discord.com", "discordapp.com"],
+	"storage": {},
+
+	"admin": {
+		"pages": [{ "path": "/settings", "label": "Publish Notify", "icon": "send" }],
+		"settingsSchema": {
+			"webhookUrl": { "type": "secret", "label": "Webhook URL" },
+			"enabled": { "type": "boolean", "label": "Send notifications", "default": true },
+			"language": {
+				"type": "select",
+				"label": "Language",
+				"options": [
+					{ "value": "auto", "label": "Site locale" },
+					{ "value": "en", "label": "English" },
+					{ "value": "ja", "label": "日本語" },
+				],
+				"default": "auto",
+			},
+			"urlPattern": { "type": "string", "label": "Entry URL pattern", "default": "/{collection}/{slug}" },
+			"collections": { "type": "string", "label": "Collections to notify" },
+		},
+	},
+}

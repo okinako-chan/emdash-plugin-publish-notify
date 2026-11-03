@@ -1,0 +1,48 @@
+{
+	"name": "emdash-plugin-publish-notify",
+	"version": "0.1.0",
+	"description": "EmDash plugin: post to a Discord webhook when an entry is published, updated, or unpublished",
+	"type": "module",
+	"main": "dist/index.mjs",
+	"exports": {
+		".": {
+			"import": "./dist/index.mjs",
+			"types": "./dist/index.d.mts"
+		},
+		"./sandbox": "./dist/plugin.mjs"
+	},
+	"files": [
+		"dist",
+		"emdash-plugin.jsonc"
+	],
+	"keywords": [
+		"emdash",
+		"emdash-plugin",
+		"discord",
+		"webhook",
+		"notifications"
+	],
+	"author": "okinako (https://okinako.dev)",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/okinako-chan/emdash-plugin-publish-notify.git"
+	},
+	"homepage": "https://github.com/okinako-chan/emdash-plugin-publish-notify#readme",
+	"peerDependencies": {
+		"emdash": ">=1.3.0"
+	},
+	"devDependencies": {
+		"@emdash-cms/plugin-cli": "0.13.5",
+		"emdash": "1.3.1",
+		"typescript": "5.9.3",
+		"vitest": "5.1.0"
+	},
+	"scripts": {
+		"validate": "emdash-plugin validate",
+		"build": "emdash-plugin build",
+		"prepare": "emdash-plugin build",
+		"test": "vitest run",
+		"typecheck": "tsc --noEmit"
+	}
+}
